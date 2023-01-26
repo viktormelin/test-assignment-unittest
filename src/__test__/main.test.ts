@@ -4,7 +4,6 @@
 
 import * as main from '../ts/main';
 import * as func from '../ts/functions';
-// import { createHtml } from '../ts/main';
 import { Todo } from '../ts/models/Todo';
 
 beforeEach(() => {
@@ -14,6 +13,18 @@ beforeEach(() => {
 afterEach(() => {
 	jest.restoreAllMocks();
 });
+
+// test('button should clear todos', () => {
+// 	document.body.innerHTML = '<button type="button" id="clearTodos">Rensa lista</button>';
+// 	const spy = jest.spyOn(main, 'clearTodos');
+
+// 	main.initTestButton();
+
+// 	document.getElementById('#clearTodos')?.click();
+
+// 	expect(spy).toHaveBeenCalled();
+// 	expect(spy).toBeCalledTimes(1);
+// });
 
 test('should clear todos', () => {
 	document.body.innerHTML =
@@ -45,18 +56,18 @@ test('should create HTML', () => {
 
 	const todos: Todo[] = [
 		{ text: 'A mock todo 1', done: false },
-		{ text: 'A mock todo 2', done: false },
+		{ text: 'A mock todo 2', done: true },
 		{ text: 'A mock todo 3', done: false },
-		{ text: 'A mock todo 4', done: false },
+		{ text: 'A mock todo 4', done: true },
 		{ text: 'A mock todo 5', done: false },
 	];
 
 	const todosShouldBe =
 		'<ul id="todos" class="todo">' +
 		'<li class="todo__text">A mock todo 1</li>' +
-		'<li class="todo__text">A mock todo 2</li>' +
+		'<li class="todo__text--done todo__text">A mock todo 2</li>' +
 		'<li class="todo__text">A mock todo 3</li>' +
-		'<li class="todo__text">A mock todo 4</li>' +
+		'<li class="todo__text--done todo__text">A mock todo 4</li>' +
 		'<li class="todo__text">A mock todo 5</li>' +
 		'</ul>';
 
