@@ -3,10 +3,15 @@ import { Todo } from './models/Todo';
 
 let todos: Todo[] = JSON.parse(localStorage.getItem('todos') || '[]');
 
-export const initTestButton = () => {
+export function initTestButton() {
 	document.getElementById('clearTodos')?.addEventListener('click', () => {
 		// @ts-ignore
 		exports.clearTodos(todos);
+	});
+
+	document.getElementById('sortTodos')?.addEventListener('click', () => {
+		// @ts-ignore
+		exports.sortTodos(todos);
 	});
 
 	(document.getElementById('newTodoForm') as HTMLFormElement)?.addEventListener('submit', (e: SubmitEvent) => {
@@ -16,7 +21,7 @@ export const initTestButton = () => {
 		// @ts-ignore
 		exports.createNewTodo(todoText, todos);
 	});
-};
+}
 
 export function createNewTodo(todoText: string, todos: Todo[]) {
 	let result = addTodo(todoText, todos);
@@ -75,4 +80,11 @@ export function clearTodos(todos: Todo[]) {
 	createHtml(todos);
 }
 
-// createHtml(todos);
+export function sortTodos(todos: Todo[]) {
+	const todosElement = document.querySelector('#todos') as HTMLDivElement;
+	todosElement.innerHTML = '';
+	createHtml(todos.sort((a, b) => a.text.localeCompare(b.text)));
+}
+
+createHtml(todos);
+initTestButton();
