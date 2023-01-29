@@ -1,20 +1,22 @@
 import { addTodo, changeTodo, removeAllTodos } from '../ts/functions';
 import { Todo } from '../ts/models/Todo';
 
-test('should add todo', () => {
-	const todoText = 'Some todo text';
-	const todos: Todo[] = [];
-	const result = addTodo(todoText, todos);
+describe('should test the addTodo function', () => {
+	test('should add todo', () => {
+		const todoText = 'Some todo text';
+		const todos: Todo[] = [];
+		const result = addTodo(todoText, todos);
 
-	expect(result.success).toBeTruthy();
-});
+		expect(result.success).toBeTruthy();
+	});
 
-test('should not add new todo', () => {
-	const todoText = 'S';
-	const todos: Todo[] = [];
-	const result = addTodo(todoText, todos);
+	test('should not add new todo', () => {
+		const todoText = 'S';
+		const todos: Todo[] = [];
+		const result = addTodo(todoText, todos);
 
-	expect(result.success).toBeFalsy();
+		expect(result.success).toBeFalsy();
+	});
 });
 
 test('should change todo state', () => {
