@@ -3,18 +3,20 @@ import { Todo } from './models/Todo';
 
 let todos: Todo[] = JSON.parse(localStorage.getItem('todos') || '[]');
 
-document.getElementById('clearTodos')?.addEventListener('click', () => {
-	clearTodos(todos);
-});
+export const initTestButton = () => {
+	document.getElementById('clearTodos')?.addEventListener('click', () => {
+		// @ts-ignore
+		exports.clearTodos(todos);
+	});
 
-(document.getElementById('newTodoForm') as HTMLFormElement)?.addEventListener('submit', (e: SubmitEvent) => {
-	e.preventDefault();
+	(document.getElementById('newTodoForm') as HTMLFormElement)?.addEventListener('submit', (e: SubmitEvent) => {
+		e.preventDefault();
 
-	let todoText: string = (document.getElementById('newTodoText') as HTMLInputElement).value;
-	console.log('Todos when creating', todos);
-
-	createNewTodo(todoText, todos);
-});
+		let todoText: string = (document.getElementById('newTodoText') as HTMLInputElement).value;
+		// @ts-ignore
+		exports.createNewTodo(todoText, todos);
+	});
+};
 
 export function createNewTodo(todoText: string, todos: Todo[]) {
 	let result = addTodo(todoText, todos);
@@ -43,7 +45,8 @@ export function createHtml(todos: Todo[]) {
 		li.classList.add('todo__text');
 		li.innerHTML = todos[i].text;
 		li.addEventListener('click', () => {
-			toggleTodo(todos[i]);
+			// @ts-ignore
+			exports.toggleTodo(todos[i]);
 		});
 
 		todosContainer.appendChild(li);
