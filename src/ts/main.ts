@@ -83,8 +83,9 @@ export function clearTodos(todos: Todo[]) {
 export function sortTodos(todos: Todo[]) {
 	const todosElement = document.querySelector('#todos') as HTMLDivElement;
 	todosElement.innerHTML = '';
-	createHtml(todos.sort((a, b) => a.text.localeCompare(b.text)));
+	// @ts-ignore
+	exports.createHtml(todos.sort((a, b) => a.text.localeCompare(b.text)));
 }
 
-createHtml(todos);
-initTestButton();
+// createHtml(todos);
+// initTestButton();
